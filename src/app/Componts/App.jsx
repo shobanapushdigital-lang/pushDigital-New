@@ -2,6 +2,8 @@
 import { useState, useEffect, useRef } from "react";
 import "./App.css";
 
+
+
 /* ─── MOUSE FOLLOWER ─── */
 function MouseFollower() {
   const dot = useRef(null);
@@ -129,12 +131,13 @@ const scrollToSection = (e, id) => {
    NAV DATA
 ───────────────────────────────────────── */
 const NAV_ITEMS = [
-  { label: "Home", hasDropdown: true, id: "home" },
-  { label: "About", hasDropdown: true, id: "about" },
-  { label: "Services", hasDropdown: true, id: "services" },
-  { label: "Portfolio", hasDropdown: true, id: "portfolio" },
-  { label: "Blog", hasDropdown: true, id: "blog" },
-  { label: "Contact", hasDropdown: true, id: "contact" },
+  { label: "Home", id: "home" },
+  { label: "About", id: "about" },
+  { label: "Services", id: "services" },
+  { label: "Portfolio", id: "portfolio" },
+  { label: "Blog", id: "blog" },
+  { label: "Contact", id: "contact" },
+  { button: "Let's Connect →", id: "connect" },
 ];
 
 /* ─────────────────────────────────────────
@@ -228,6 +231,7 @@ function Navbar() {
       observer.disconnect();
     };
   }, []);
+  
 
   return (
     <nav className={`navbar${scrolled ? " shadowed" : ""}${dark ? " dark-mode" : ""}`}>
@@ -237,64 +241,59 @@ function Navbar() {
         </div>
       </div>
 
-      <ul className={`nav-links${menuOpen ? " open" : ""}`}>
-        {NAV_ITEMS.map((item) => (
-          <li key={item.label} className="nav-item">
-            <a
-              href={`#${item.id}`}
-              className={activeId === item.id ? "active" : ""}
-              onClick={(e) => {
-                scrollToSection(e, item.id);
-                setMenuOpen(false);
-                setActiveId(item.id);
-              }}
-            >
-              {item.label}
-              {item.hasDropdown && (
-                <svg className="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              )}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <div className="nav-actions">
-        <button className="nav-icon-btn" aria-label="Search">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-        </button>
-        <button className="nav-menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
-          Menu
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-          </svg>
-        </button>
-        <button className="nav-icon-btn" aria-label="Theme" onClick={() => setDark(!dark)}>
-          {dark ? (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="5" />
-              <line x1="12" y1="1" x2="12" y2="3" />
-              <line x1="12" y1="21" x2="12" y2="23" />
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-              <line x1="1" y1="12" x2="3" y2="12" />
-              <line x1="21" y1="12" x2="23" y2="12" />
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-            </svg>
-          ) : (
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-            </svg>
-          )}
-        </button>
+      <div
+        className={`hamburger ${menuOpen ? "open" : ""}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
+
+      <ul className={`nav-links${menuOpen ? " open" : ""}`}>
+  {NAV_ITEMS.map((item,idx) => (
+    <li key={item.id} className="nav-item">
+
+      {/* NORMAL LINKS */}
+      {item.label && (
+        <a
+          href={`#${item.id}`}
+          className={`nav-link ${activeId === item.id ? "active" : ""}`}
+          onClick={(e) => {
+            scrollToSection(e, item.id);
+            setMenuOpen(false);
+            setActiveId(item.id);
+          }}
+        >
+          {item.label}
+        </a>
+      )}
+
+      {/* BUTTON */}
+      {item.button && (
+
+
+
+
+        <a
+  href="#contact"
+  className="nav-btn"
+  onClick={(e) => {
+    e.preventDefault();
+    document.getElementById("contact")?.scrollIntoView({
+      behavior: "smooth"
+    });
+    setMenuOpen(false);
+  }}
+>
+  Let's Connect
+</a>
+        
+      )}
+
+    </li>
+  ))}
+</ul>
     </nav>
   );
 }
@@ -691,7 +690,7 @@ function WorkSection() {
                 <div style={{ position: 'relative' }}>
                   <textarea placeholder="How can we help you?" style={{ height: '180px', display: 'block' }}></textarea>
 
-                  <Reveal animation="slide-left" style={{ position: 'absolute', bottom: 0, right: 0, width: '50%' }}>
+                  <Reveal animation="slide-left" className="contact-btn-reveal" style={{ position: 'absolute', bottom: 0, right: 0, width: '50%' }}>
                     <button className="contact-btn" style={{ width: '100%', justifyContent: 'space-between' }}>
                       LEAVE A MESSAGE <span>→</span>
                     </button>
@@ -934,25 +933,25 @@ function WorkSection() {
 
         {/* TOP CTA */}
         <div className="footer-top">
-          <div className="footer-cta-left">
-            <h2>
-              LET'S MAKE IT <br />
-              HAPPEN <br />
-              TOGETHER.
-            </h2>
-          </div>
+  <div className="footer-cta-left slide-in-left">
+    <h2>
+      LET'S MAKE IT <br />
+      HAPPEN <br />
+      TOGETHER.
+    </h2>
+  </div>
 
-          <div className="footer-cta-right">
-            <p>
-              We’re PUSH DIGITAL, a team of experienced professionals with expertise
-              in implementing new strategies and ideas.
-            </p>
+  <div className="footer-cta-right slide-in-right">
+    <p>
+      We’re PUSH DIGITAL, a team of experienced professionals with expertise
+      in implementing new strategies and ideas.
+    </p>
 
-            <button className="start-btn" onClick={(e) => scrollToSection(e, "contact")}>
-              START A CONVERSATION →
-            </button>
-          </div>
-        </div>
+    <button className="start-btn">
+      START A CONVERSATION →
+    </button>
+  </div>
+</div>
 
         {/* SOCIAL */}
         <div className="footer-social">
@@ -1017,8 +1016,8 @@ function WorkSection() {
           <p>PushDigital 2025 | All Rights Reserved</p>
 
           <div>
-            <span>Privacy Policy</span>
-            <span>Terms & Conditions</span>
+            <span>Privacy Policy | Terms & Conditions</span>
+      
           </div>
         </div>
 
