@@ -47,7 +47,7 @@ function ElPrinting() {
             <div className="el-printing-content-text">
               <h2>SERVICE OVERVIEW</h2>
               <p>
-                Electroluminescent technology brings light to your marketing. Using Electroluminescent(EL) Technology, we create glowing, futuristic displays that demand attention. Perfect for events, signage, and 
+                Electroluminescent technology brings light to your marketing. Using Electroluminescent(EL) Technology, we create glowing, futuristic displays that demand attention.Perfect<br /> for events, signage, and 
                 advertising, our EL prints make your brand shine- literally-day or night.
               </p>
               <div className="offer-box">

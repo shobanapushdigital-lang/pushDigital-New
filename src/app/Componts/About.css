@@ -76,9 +76,9 @@
 }
 
 .about-wrapper {
-  display: grid;
+  /* display: grid; */
   grid-template-columns: 1.2fr 1fr;
-  gap: 60px;
+  gap: 80px;
   align-items: center;
   position: relative;
 }
@@ -115,10 +115,13 @@
 }
 
 .about-text {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #ccc;
-  font-family: "Inter", sans-serif;
+  color: #fff;
+  text-align: left;
+  width: 45%;
+  margin-top: 40px;
+  font-size: 14px;
+  line-height: 1.75;
+  margin-left: 60px;  /* ✅ fixed */
 }
 
 .about-card {
@@ -247,9 +250,94 @@
   .about-card {
     position: relative;
     right: 0;
-    bottom: 0;
+    bottom: 180px;
     width: 100%;
     margin-top: 20px;
   }
 }
 
+@media (max-width: 100%) and (max-width: 1569px){
+ .about-wrapper {
+  position: relative;
+  overflow: visible;
+}
+.about-image {
+  position: relative;
+  width: 1400px;
+  height: 900px;
+  margin-left: 60px;
+  margin-top: 20px;
+  overflow: hidden; /* image stays inside frame */
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+  
+  
+}
+.about-image:hover img {
+  transform: scale(1.05); 
+}
+/* About play button — separate from hero play button */
+.about-play-btn {
+  position: absolute;
+  top: 83%;
+    left: 73%;
+  transform: translate(-50%, -50%);
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: black;
+  border: 2px solid red;
+  color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 3;
+  transition: background 0.2s, color 0.2s;
+}
+.about-play-btn:hover { background: red; color: white; }
+.about-text {
+  max-width: 700px;
+  width: 100%;
+  margin: 40px auto 0;
+  padding: 0 20px;
+}
+.about-card {
+  position: absolute;
+  top: 769px;
+  left: 1090px;
+  width: 352px;
+  height: 250px;
+  padding: 60px;
+  margin-left: -0px;
+  background: #0b0b0b;
+  border: 1px solid rgba(255,255,255,0.1);
+  z-index: 2;
+  /* margin-right: 10px; */
+}
+
+.about-card h2 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.about-card button {
+  background: #1a8917;
+  color: #fff;
+  text-align: center;
+  padding: 20px 15px;
+  font-size: 15px;
+  margin-top: 16px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+   border: 1px solid #f7f7f7;
+  
+}
+}

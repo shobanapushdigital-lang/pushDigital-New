@@ -911,7 +911,7 @@ button { font-family: "Inter", sans-serif; cursor: pointer; border: none; backgr
 .about-text {
  color: #fff;
     text-align: left;
-    width: 65%;
+    /* width: 65%; */
     margin-top: 40px;
     font-size: 16px;
     line-height: 1.75;
@@ -922,8 +922,8 @@ button { font-family: "Inter", sans-serif; cursor: pointer; border: none; backgr
   position: absolute;
   top: 719px;
   left: 1390px;
-  width: 372px;
-  height: 250px;
+  width: 332px;
+  height: 300px;
   padding: 60px;
   margin-left: -29px;
   background: #0b0b0b;
@@ -1359,7 +1359,7 @@ section {
 
 /* CONTAINER (center alignment like your site) */
 section > div {
-  max-width: 1800px;
+  max-width: 1930px;
   /* margin: 10px auto; */
   /* padding: 0 60px; */
   text-align: center;
@@ -2848,7 +2848,7 @@ position: relative;
   position: relative;
   width: 1400px;
   height: 900px;
-  margin-left: 0px;
+  margin-left: 60px;
   margin-top: 20px;
   overflow: hidden; /* image stays inside frame */
 }
@@ -2869,7 +2869,7 @@ position: relative;
 .about-play-btn {
   position: absolute;
   top: 83%;
-    left: 76%;
+    left: 73%;
   transform: translate(-50%, -50%);
   width: 60px; height: 60px;
   border-radius: 50%;
@@ -2892,7 +2892,7 @@ position: relative;
     margin-top: 40px;
     font-size: 14px;
     line-height: 1.75;
-    margin-left: -1px
+    margin-left: 60px
     
 }
 .about-card {
@@ -3050,7 +3050,7 @@ position: relative;
   .img3 img,
   .img4 img {
     height: 420px;
-    margin-left: 45px;
+    margin-left: 58px;
     max-width: 1430px;
     overflow: hidden;
   }
@@ -3163,12 +3163,12 @@ position: relative;
 
   .test-p {
     margin-right: 1200px;
-    margin-left: -80px;
+    margin-left: 58px;
   }
 
   .about {
     font-size: 52px;
-    margin-left: -80px;
+    margin-left: 58px ;
   }
 
   /* ══════════════════════════════════════════
