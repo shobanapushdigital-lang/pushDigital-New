@@ -1,6 +1,9 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import "./App.css";
+import Link from "next/link";
+
 
 
 
@@ -131,12 +134,12 @@ const scrollToSection = (e, id) => {
    NAV DATA
 ───────────────────────────────────────── */
 const NAV_ITEMS = [
-  { label: "Home", id: "home" },
-  { label: "About", id: "about" },
-  { label: "Services", id: "services" },
-  { label: "Portfolio", id: "portfolio" },
-  { label: "Blog", id: "blog" },
-  { label: "Contact", id: "contact" },
+  { label: "Home",      id: "home", href: "/" },
+  { label: "About",    id: "about",    href: "/about" },
+  { label: "Services", id: "services", href: "/services" },
+  { label: "Projects", id: "projects", href: "/projects" },
+  { label: "Blog",     id: "blog", href: "/blog" },
+  { label: "Contact",  id: "contact", href: "/contact" },
   { button: "Let's Connect →", id: "connect" },
 ];
 
@@ -206,6 +209,14 @@ function Navbar() {
   const [dark, setDark] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState('home');
+  const pathname = usePathname();
+  
+
+  // Derive active nav from pathname (for inner pages)
+  const getIsActive = (item) => {
+    if (item.href) return pathname === item.href;
+    return activeId === item.id;
+  };
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 10);
@@ -236,9 +247,9 @@ function Navbar() {
   return (
     <nav className={`navbar${scrolled ? " shadowed" : ""}${dark ? " dark-mode" : ""}`}>
       <div className="nav-logo">
-        <div className="logo-mark">
+        <Link href="/" className="logo-mark">
           <img src="/logo.png" alt="Push Digital logo" />
-        </div>
+        </Link>
       </div>
 
       <div
@@ -251,49 +262,53 @@ function Navbar() {
       </div>
 
       <ul className={`nav-links${menuOpen ? " open" : ""}`}>
-  {NAV_ITEMS.map((item,idx) => (
-    <li key={item.id} className="nav-item">
+        {NAV_ITEMS.map((item) => (
+          <li key={item.id} className="nav-item">
 
-      {/* NORMAL LINKS */}
-      {item.label && (
-        <a
-          href={`#${item.id}`}
-          className={`nav-link ${activeId === item.id ? "active" : ""}`}
-          onClick={(e) => {
-            scrollToSection(e, item.id);
-            setMenuOpen(false);
-            setActiveId(item.id);
-          }}
-        >
-          {item.label}
-        </a>
-      )}
+            {/* PAGE-LEVEL NAVIGATION — About & Services → full page route */}
+            {item.label && item.href && (
+              <Link
+                href={item.href}
+                className={`nav-link ${getIsActive(item) ? "active" : ""}`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            )}
 
-      {/* BUTTON */}
-      {item.button && (
+            {/* SCROLL-ANCHOR LINKS — Home, Portfolio, Blog, Contact */}
+            {item.label && !item.href && (
+              <a
+                href={`#${item.id}`}
+                className={`nav-link ${getIsActive(item) ? "active" : ""}`}
+                onClick={(e) => {
+                  scrollToSection(e, item.id);
+                  setMenuOpen(false);
+                  setActiveId(item.id);
+                }}
+              >
+                {item.label}
+              </a>
+            )}
 
+            {/* CTA BUTTON */}
+            {item.button && (
+              <a
+                href="#contact"
+                className="nav-btn"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                  setMenuOpen(false);
+                }}
+              >
+                Let's Connect
+              </a>
+            )}
 
-
-
-        <a
-  href="#contact"
-  className="nav-btn"
-  onClick={(e) => {
-    e.preventDefault();
-    document.getElementById("contact")?.scrollIntoView({
-      behavior: "smooth"
-    });
-    setMenuOpen(false);
-  }}
->
-  Let's Connect
-</a>
-        
-      )}
-
-    </li>
-  ))}
-</ul>
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 }
@@ -327,7 +342,7 @@ function Hero() {
   const [playVisible, setPlayVisible] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const heroRef = useRef(null);
-
+  
   useEffect(() => {
     const t = setTimeout(() => setPlayVisible(true), 400);
     return () => clearTimeout(t);
@@ -341,6 +356,14 @@ function Hero() {
       y: ((e.clientY - rect.top) / rect.height - 0.5) * 8,
     });
   };
+
+const scrollToSection = (id) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
 
   return (
     <section id="home" className="hero" ref={heroRef} onMouseMove={handleMouseMove}>
@@ -401,22 +424,57 @@ function Hero() {
           We're passionate group of creative and savvy marketers<br />
           striving to produce innovative, meaningful work.
         </p>
-        <button className="hero-cta" onClick={(e) => scrollToSection(e, "contact")}>
-          START A CONVERSATION
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <line x1="5" y1="12" x2="19" y2="12" />
-            <polyline points="12 5 19 12 12 19" />
-          </svg>
-        </button>
+
+<Link href="/contact" className="hero-cta">
+  START A CONVERSATION
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+  >
+    <line x1="5" y1="12" x2="19" y2="12" />
+    <polyline points="12 5 19 12 12 19" />
+  </svg>
+</Link>
       </div>
     </section>
   );
 }
 
+ function BrandSection() {
+
+  const [active, setActive] = useState(null);
+
+  const content = {
+    retailers: {
+      title: "RETAILERS",
+      text: "Retailers are at the forefront of consumer engagement, connecting products with people through innovative strategies and personalized experiences.",
+      image: "/RETAILERS.png",
+      icon: "/white-tv.png",
+    },
+
+    political: {
+      title: "POLITICAL",
+      text: "Political campaigns and organizations rely on effective communication to influence, inform, and mobilize communities.",
+      image: "/POLITICAL.png",
+      icon: "/white-tv.png",
+    },
+
+    healthcare: {
+      title: "HEALTHCARE",
+      text: "Healthcare providers and institutions focus on delivering quality care while adapting to evolving patient needs and technologies.",
+      image: "/Container (5).png",
+      icon: "/white-tv.png",
+    },
+  };
+
 /* ─────────────────────────────────────────
    BRAND SECTION
 ───────────────────────────────────────── */
-function BrandSection() {
+
   return (
     <section className="build-section">
       <div className="container">
@@ -430,30 +488,58 @@ function BrandSection() {
         </Reveal>
 
         <div className="bs-stage">
-          {/* LEFT */}
-          <Reveal animation="slide-right" className="bs-side left">
-            <div className="bs-box">
-              <span className="bs-text">RETAILERS</span>
-              <span className="bs-icon"><img src="/brand_icon.png" alt="icon" /></span>
+          {/* LEFT PANELS */}
+          {Object.entries(content).slice(0, 2).map(([key, data]) => (
+            <div
+              key={key}
+              className={`bs-panel ${active === key ? "active" : ""}`}
+              onMouseEnter={() => setActive(key)}
+              onMouseLeave={() => setActive(null)}
+            >
+              <img src={data.image} alt={data.title} className="bs-panel-img" />
+              <div className="bs-panel-overlay" />
+              <div className="bs-panel-content">
+                <img src={data.icon} alt="" className="bs-panel-icon" />
+                <h2 className="bs-panel-title">{data.title}</h2>
+                <p className="bs-panel-text" dangerouslySetInnerHTML={{ __html: data.text }} />
+              </div>
+              <div className="bs-panel-label">
+                <span className="bs-label-text">{data.title}</span>
+                <span className="bs-label-icon"><img src={data.icon} alt="icon" /></span>
+              </div>
             </div>
-            <div className="bs-box">
-              <span className="bs-text">POLITICAL</span>
-              <span className="bs-icon"><img src="/brand_icon.png" alt="icon" /></span>
-            </div>
-          </Reveal>
+          ))}
 
-          {/* CENTER — slides top-to-bottom */}
-          <Reveal animation="slide-down" className="bs-center" delay={200}>
-            <img src="/Container.png" alt="Brand" />
-          </Reveal>
-
-          {/* RIGHT */}
-          <Reveal animation="slide-left" className="bs-side right">
-            <div className="bs-box">
-              <span className="bs-text">HEALTHCARE</span>
-              <span className="bs-icon"><img src="/brand_icon.png" alt="icon" /></span>
+          {/* CENTER IMAGE DISPLAY */}
+          <div className={`bs-center-panel ${active ? "shrunk" : "expanded"}`}>
+            <img src="/Container.png" alt="Center Brand" className="bs-center-img" />
+            <div className="bs-center-overlay" />
+            <div className="bs-center-content">
+      
             </div>
-          </Reveal>
+          </div>
+
+          {/* RIGHT PANEL */}
+          {Object.entries(content).slice(2).map(([key, data]) => (
+            <div
+              key={key}
+              className={`bs-panel ${active === key ? "active" : ""}`}
+              onMouseEnter={() => setActive(key)}
+              onMouseLeave={() => setActive(null)}
+            >
+              <img src={data.image} alt={data.title} className="bs-panel-img" />
+              <div className="bs-panel-overlay" />
+              <div className="bs-panel-content">
+                <img src={data.icon} alt="" className="bs-panel-icon" />
+                <h2 className="bs-panel-title">{data.title}</h2>
+                <p className="bs-panel-text" dangerouslySetInnerHTML={{ __html: data.text }} />
+              </div>
+              <div className="bs-panel-label">
+                <span className="bs-label-text">{data.title}</span>
+                <span className="bs-label-icon"><img src={data.icon} alt="icon" /></span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -509,7 +595,9 @@ function AboutSection() {
         <Reveal animation="fade-up" className="about-card" delay={400}>
           <h2>WE ARE</h2>
           <h2>PUSH DIGITAL</h2>
-          <button onClick={(e) => scrollToSection(e, "about")}>ABOUT US →</button>
+          <Link href="/about">
+            <button>ABOUT US →</button>
+          </Link>
         </Reveal>
       </div>
     </section>
@@ -520,6 +608,32 @@ function AboutSection() {
    WORK SECTION
 ───────────────────────────────────────── */
 function WorkSection() {
+
+  const [name, setname] = useState("");
+  const [email, setemail] = useState("");
+  const [number, setnumber] = useState("");
+  const [area, setarea] = useState("");
+  const [message, setMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    if (showMessage) {
+      setname("");
+      setemail("");
+      setnumber("");
+      setarea("");
+      setMessage("");
+      setIsChecked(false);
+
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showMessage]);
+
   return (
     <>
       <section id="services" className="work">
@@ -615,7 +729,7 @@ function WorkSection() {
                 <h3>TECH & INNOVATION</h3>
                 <span className="fc-tag3">MARKETING</span>
                 <ul className="marke">
-                  <li>Web Development</li>
+                  <li><Link href="/web-design" style={{color: 'inherit', textDecoration: 'none'}}>Web Development</Link></li>
                   <li>UI/UX Design</li>
                   <li>Electroluminescent Products</li>
                 </ul>
@@ -677,24 +791,38 @@ function WorkSection() {
 
               <Reveal animation="slide-right">
                 <div className="input-row">
-                  <input type="text" placeholder="Your name" />
-                  <input type="email" placeholder="Your email" />
+                  <input type="text" placeholder="Your name" value={name} onChange={(e) => setname(e.target.value)} />
+                  <input type="email" placeholder="Your email" value={email} onChange={(e) => setemail(e.target.value)} />
                 </div>
 
                 <div className="input-row">
-                  <input type="text" placeholder="Your number" />
-                  <input type="text" placeholder="Your area" />
+                  <input type="text" placeholder="Your number" value={number} onChange={(e) => setnumber(e.target.value)} />
+                  <input type="text" placeholder="Your area" value={area} onChange={(e) => setarea(e.target.value)} />
                 </div>
 
                 {/* TEXTAREA AND FLOATING BUTTON */}
                 <div style={{ position: 'relative' }}>
-                  <textarea placeholder="How can we help you?" style={{ height: '180px', display: 'block' }}></textarea>
+                  <textarea placeholder="How can we help you?" style={{ height: '180px', display: 'block' }} value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
 
-                  <Reveal animation="slide-left" className="contact-btn-reveal" style={{ position: 'absolute', bottom: 0, right: 0, width: '50%' }}>
-                    <button className="contact-btn" style={{ width: '100%', justifyContent: 'space-between' }}>
-                      LEAVE A MESSAGE <span>→</span>
-                    </button>
-                  </Reveal>
+                 <div
+      animation="slide-left"
+      className="contact-btn-reveal"
+      style={{ position: "absolute", bottom: 0, right: 0, width: "50%" }}
+    >
+       {!showMessage ? (
+         <button
+         onClick={() => setShowMessage(true)}
+          className="contact-btn"
+          style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}
+        >
+          LEAVE A MESSAGE <span>→</span>
+        </button>
+       ) : (
+        <div className="message-box">
+          Thank you for your message!
+        </div>
+       )}
+    </div>
                 </div>
               </Reveal>
 
@@ -705,7 +833,7 @@ function WorkSection() {
                 <div style={{ paddingRight: '20px', paddingBottom: '20px' }}>
                   <Reveal animation="slide-right">
                     <div className="checkbox" style={{ marginTop: '20px' }}>
-                      <input type="checkbox" />
+                      <input type="checkbox" checked={isChecked} onChange={(e) => setIsChecked(e.target.checked)} />
                       <p>
                         I agree to the privacy policy and give my permission to process my personal <br />
                         data for the purposes specified in the Privacy Policy.
@@ -716,7 +844,7 @@ function WorkSection() {
 
                 {/* PURPLE COLOR BLOCK */}
                 <Reveal animation="slide-left">
-                  <div className="color" style={{ width: '30%', height: '100%', backgroundColor: '#DCA3FF' }}></div>
+                  <div className="color" style={{ width: '100%', height: '100%', backgroundColor: '#DCA3FF',marginLeft: '80px' }}></div>
                 </Reveal>
 
               </div>
@@ -728,7 +856,7 @@ function WorkSection() {
 
           </div>
         </section>
-        <section id="portfolio" className="projects-section">
+        <section id="projects" className="projects-section">
           <div className="projects-container">
 
             <Reveal animation="fade-up"><h6 className="our-projects">Our Projects</h6></Reveal>
@@ -749,9 +877,8 @@ function WorkSection() {
                   We Love What we do, Check out Our Latest Works
                 </p>
 
-                <button className="work-btn" onClick={(e) => scrollToSection(e, "portfolio")}>
-                  OUR WORKS →
-                </button>
+                <Link href="/projects">
+                <button className="work-btn">OUR WORKS →</button></Link>
               </Reveal>
             </div>
           </div>
@@ -947,9 +1074,9 @@ function WorkSection() {
       in implementing new strategies and ideas.
     </p>
 
-    <button className="start-btn">
-      START A CONVERSATION →
-    </button>
+    <Link href="/contact" className="start-btn">
+  START A CONVERSATION →
+</Link>
   </div>
 </div>
 
@@ -1027,6 +1154,104 @@ function WorkSection() {
   );
 }
 
+
+/* ─────────────────────────────────────────
+   FOOTER (shared across all pages)
+───────────────────────────────────────── */
+function Footer() {
+  return (
+    <footer className="footer">
+
+      {/* TOP CTA */}
+      <div className="footer-top">
+        <div className="footer-cta-left slide-in-left">
+          <h2>
+            LET'S MAKE IT <br />
+            HAPPEN <br />
+            TOGETHER.
+          </h2>
+        </div>
+        <div className="footer-cta-right slide-in-right">
+          <p>
+            We're PUSH DIGITAL, a team of experienced professionals with expertise
+            in implementing new strategies and ideas.
+          </p>
+
+ <Link href="/contact" className="start-btn">
+  START A CONVERSATION →
+</Link>
+
+        </div>
+      </div>
+
+      {/* SOCIAL */}
+      <div className="footer-social">
+        <span>Email ↗</span>
+        <span>Instagram ↗</span>
+        <span>Twitter (X) ↗</span>
+        <span>LinkedIn ↗</span>
+        <span>Medium ↗</span>
+        <span>Spotify ↗</span>
+      </div>
+
+      {/* MAIN FOOTER */}
+      <div className="footer-main">
+        {/* LEFT */}
+        <div className="footer-left">
+          <img src="/logo-p.png" alt="logo" />
+          <div className="contact">
+            <div className="contact-item">
+              <img className="contact-icon" src="/Background (1).png" alt="phone icon" />
+              <div className="contact-text">
+                <span className="label">Phone Number</span>
+                <span className="value">9840264453</span>
+              </div>
+            </div>
+            <div className="contact-item">
+              <img className="contact-icon" src="/Background (2).png" alt="mail icon" />
+              <div className="contact-text">
+                <span className="label">Mail</span>
+                <span className="value">murali@push.digital</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* SERVICES */}
+        <div className="footer-col">
+          <h4>SERVICES</h4>
+          <p>Advertising</p>
+          <p>Creatives</p>
+          <p>Tech & Innovations</p>
+        </div>
+
+        {/* UTILITY */}
+        <div className="footer-col">
+          <h4>UTILITY PAGES</h4>
+          <p>Licenses</p>
+          <p>Changelog</p>
+          <p>Style Guide</p>
+          <p>Privacy Policy</p>
+          <p>Terms & Conditions</p>
+        </div>
+      </div>
+
+      {/* BOTTOM */}
+      <div className="footer-bottom">
+        <p>PushDigital 2025 | All Rights Reserved</p>
+        <div>
+          <span>Privacy Policy | Terms & Conditions</span>
+        </div>
+      </div>
+
+    </footer>
+  );
+}
+
+/* ─────────────────────────────────────────
+   NAMED EXPORTS (used by inner pages)
+───────────────────────────────────────── */
+export { Reveal, TopBar, Navbar, Footer };
 
 /* ─────────────────────────────────────────
    APP ROOT

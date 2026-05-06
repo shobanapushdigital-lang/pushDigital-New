@@ -29,28 +29,28 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth;  scroll-padding-top: 50px; }
 body {
   padding-top: calc(var(--topbar-h) + var(--navbar-h));
   background: var(--white);
   color: var(--text);
-  font-family: var(--font-body);
+  font-family: "Inter", sans-serif;
   overflow-x: hidden;
 }
 a  { color: inherit; text-decoration: none; }
 ul { list-style: none; }
-button { font-family: inherit; cursor: pointer; border: none; background: none; }
+button { font-family: "Inter", sans-serif; cursor: pointer; border: none; background: none; }
 
 /* Custom mouse follower removed */
 a  { color: inherit; text-decoration: none; }
 ul { list-style: none; }
-button { font-family: inherit; cursor: pointer; border: none; background: none; }
+button { font-family: "Inter", sans-serif; cursor: pointer; border: none; background: none; }
 
-.container {
-  max-width: 1300px;
+/* .container {
+  /* max-width: 1300px; */
   /* margin: 0 auto; */
-  padding: 0 40px;
-}
+  /* padding: 0 40px; 
+} */
 
 /* ══════════════════════════════════════════
    ANIMATIONS
@@ -272,7 +272,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   text-decoration: none;
   border: none;
   transition: all 0.3s ease;
-  margin-left: 150px;
+  margin-left: 260px;
 }
 
 /* ARROW */
@@ -435,7 +435,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   align-items: center;
   justify-content: center;
   gap: 2px;
-  font-family: var(--font-hero);
+  font-family: "Inter", sans-serif;
   font-size: 0.65rem;
   /* font-weight: 800; */
   color: var(--black);
@@ -537,6 +537,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 80px 0;
   text-align: center;
   gap: 60px;
+  margin-left: 50px;
 }
 .classh3 {
   font-family: "Inter", sans-serif;
@@ -547,7 +548,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: #050505;
   margin: 0 auto 12px;
   text-align: center;
-  margin-left: 580px;
+  margin-left: 180px;
 }
 .build-header h1 {
   font-family: "Inter", sans-serif;
@@ -557,7 +558,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: #050505;
   line-height: 1.5;
   text-align: center;
-  margin-left: 580px;
+  margin-left: 180px;
 }
 .bs-stage {
   display: flex;
@@ -565,66 +566,230 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   align-items: center;
   gap: 50px;
   margin: 80px auto;
-  max-width: 1600px;   /* control overall layout */
+  max-width: 1800px;
   padding: 0 40px;
-  margin-left: 650px;
+  height: 650px;
 }
 
-/* REMOVE this ❌ */
-/* margin-left: 50px; */
-
-.bs-side {
-  display: flex;
-  flex-direction: row;
-  gap: 40px;
-}
-
-.bs-box {
-  width: 90px;
-  height: 600px;
+/* SIDE PANELS (RETAILERS, POLITICAL, HEALTHCARE) */
+.bs-panel {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  /* border-radius: 20px; */
+  cursor: pointer;
+  transition: flex 0.8s cubic-bezier(0.25, 1, 0.3, 1), background 0.5s ease, border-color 0.5s ease;
+  background: transparent;
   border: 1px solid #999;
+
+}
+
+.bs-panel.active {
+  flex: 12; /* Take over the stage */
+  background: #111;
+  border-color: transparent;
+}
+
+/* CENTER PANEL (DEFAULT VIEW) */
+.bs-center-panel {
+  flex: 8;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  /* border-radius: 20px; */
+  transition: flex 0.8s cubic-bezier(0.25, 1, 0.3, 1), opacity 0.4s ease, transform 0.4s ease;
+}
+
+.bs-center-panel.shrunk {
+  flex: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.95);
+}
+
+.bs-center-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.5s var(--ease-out);
+}
+
+.bs-center-panel.expanded .bs-center-img {
+  transform: scale(1.05);
+}
+
+.bs-center-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+  z-index: 2;
+}
+
+.bs-center-content {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  z-index: 3;
+  color: #fff;
+  text-align: left;
+}
+
+.bs-center-content h2 {
+  font-family: "Inter", sans-serif;
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  margin-top: -90px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.bs-center-content p {
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.8);
+  max-width: 500px;
+  
+}
+
+/* PANEL IMAGES & OVERLAYS */
+.bs-panel-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.6s ease, transform 1.2s var(--ease-out);
+  opacity: 0;
+  z-index: 1;
+}
+
+.bs-panel.active .bs-panel-img {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.bs-panel-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 2;
+}
+
+.bs-panel.active .bs-panel-overlay {
+  opacity: 1;
+}
+
+/* CONTENT (Visible when expanded) */
+.bs-panel-content {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.5s var(--ease-out);
+  pointer-events: none;
+  text-align: left;
+  z-index: 5;
+}
+
+.bs-panel.active .bs-panel-content {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.bs-panel-icon {
+  color: #ffff;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.bs-panel-title {
+  font-family:  "Inter", sans-serif;
+  font-size: 35px;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 362px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.bs-panel-text {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+  max-width: 650px;
+}
+
+/* LABEL (Visible when collapsed) */
+.bs-panel-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 40px 0;
-  gap: 60px;
+  padding: 30px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 4;
 }
 
-.bs-text {
+.bs-panel.active .bs-panel-label {
+  opacity: 0;
+  transform: translateY(15px);
+  pointer-events: none;
+}
+
+.bs-label-text {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
+  font-family:  "Inter", sans-serif;
   font-size: 18px;
-  font-weight: bold;
-  letter-spacing: 3px;
+  font-weight: 600;
+  letter-spacing: 4px;
   color: #050505;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  transition: color 0.3s ease;
 }
 
-.bs-icon {
+.bs-panel.active .bs-label-text {
+  color: #fff;
+}
+
+.bs-label-icon {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(0,0,0,0.05);
+  border-radius: 50%;
+  transition: background 0.3s ease;
 }
 
-.bs-icon img {
-  width: 28px;
-  height: 28px;
+.bs-panel.active .bs-label-icon {
+  background: rgba(255,255,255,0.1);
 }
 
-/* ✅ CENTER IMAGE FIX */
-.bs-center {
-  flex: 1; /* takes remaining space */
-  display: flex;
-  justify-content: center;
+.bs-label-icon img {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0);
+  transition: filter 0.3s ease;
 }
 
-.bs-center img {
-  /* width: ; */
-  max-width: 2500px; /* controls image width */
-  height: 600px;
-  object-fit: cover;
-  display: block;
-  
+.bs-panel.active .bs-label-icon img {
+  filter: brightness(0) invert(1);
 }
 /* ══════════════════════════════════════════
    CTA SECTION
@@ -684,7 +849,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: none;
   color: #333;
   font-size: 19px;
-  font-family: var(--font-body);
+  font-family: "Inter", sans-serif;
   cursor: pointer;
   transition: color 0.2s;
   
@@ -699,24 +864,35 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 100px 0;
   /* margin-left: 50px; */
 }
-.about-wrapper { position: relative; }
-.about-image { position: relative; }
-.about-image img {
-  width: 1800px;
+.about-wrapper {
+  position: relative;
+  overflow: visible;
+}
+.about-image {
+  position: relative;
+  width: 1600px;
   height: 900px;
-  /* max-width: 1800px; */
+  margin-left: 90px;
+  margin-top: 20px;
+  overflow: hidden; /* image stays inside frame */
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.5s ease;
+  
 }
 .about-image:hover img {
-  transform: scale(1.05);
+  transform: scale(1.05);  
 }
 /* About play button — separate from hero play button */
 .about-play-btn {
   position: absolute;
-  top: 79%;
-    left: 130%;
+  top: 78%;
+    left: 77%;
   transform: translate(-50%, -50%);
   width: 60px; height: 60px;
   border-radius: 50%;
@@ -733,17 +909,19 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .about-play-btn:hover { background: red; color: white; }
 .about-text {
-  width: 65%;
-  margin-top: 24px;
-  color: #ffffff;
-  font-size: 16px;
-  line-height: 1.75;
-  text-align: left;
+ color: #fff;
+    text-align: left;
+    width: 65%;
+    margin-top: 40px;
+    font-size: 16px;
+    line-height: 1.75;
+    margin-left: 95px
+    
 }
 .about-card {
   position: absolute;
   top: 719px;
-  left: 1500px;
+  left: 1390px;
   width: 372px;
   height: 250px;
   padding: 60px;
@@ -825,13 +1003,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   white-space: nowrap;
 }
 
+.work-stats{
+margin-left: 50px;
+}
+
 /* ══════════════════════════════════════════
    MAIN BODY  (left sticky + right zigzag)
 ══════════════════════════════════════════ */
 .work-body {
   /* max-width: 1300px; */
   margin: 0 auto;
-  margin-left: 150px;
+  margin-left: 80px;
   padding: 0 40px;
   display: flex;
   gap: 230px;
@@ -966,7 +1148,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* count — top right corner of whole row */
 .zz-count {
   position: absolute;
-  margin-left: 473px;
+  margin-left: 303px;
   bottom: 220px;
   /* top: 40px; */
   /* right: 20px; */
@@ -1009,12 +1191,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .floating-card h3 {
   font-family: "Inter", sans-serif;
   font-size: clamp(20px, 2vw, 28px);
-  font-weight: 800;
+  font-weight: 600;
   color: #111;
   letter-spacing: 1px;
   margin-bottom: 10px;
   text-transform: uppercase;
 }
+
+.floating-card h3:hover { color: red; opacity: 1; } 
 
 /* rotated MARKETING stamp */
 .fc-tag1 {
@@ -1095,13 +1279,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: transform 0.4s var(--ease-out), box-shadow 0.4s;
 }
 .zigzag-image1:hover,
-.zigzag-imag2:hover,
+.zigzag-image2:hover,
 .zigzag-image3:hover {
   transform: scale(1.02);
   box-shadow: 0 16px 48px rgba(0,0,0,0.15);
 }
 .zigzag-image1 img:first-child,
-.zigzag-imag2 img:first-child,
+.zigzag-image2 img:first-child,
 .zigzag-image3 img:first-child {
   width: 100%;
   height: 100%;
@@ -1110,7 +1294,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: transform 0.6s var(--ease-out);
 }
 .zigzag-image1:hover img:first-child,
-.zigzag-imag2:hover img:first-child,
+.zigzag-image2:hover img:first-child,
 .zigzag-image3:hover img:first-child {
   transform: scale(1.05);
 }
@@ -1295,13 +1479,42 @@ section > div {
   }
 }
 
+.message-box {
+  width: 300px;   /* reduce size */
+  margin: 15px auto; /* center it */
+  padding: 15px;
+  background: #111;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.message-box textarea {
+  width: 100%;
+  height: 80px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  resize: none;
+  margin-bottom: 10px;
+}
+
+.send-btn {
+  background: #000;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
 /* SECTION */
 .contact-section {
    font-family: "Inter", sans-serif;
    border: 1px solid #ddd;
    margin: 30px auto;
    max-width: 1200px;
-   margin-left: 80px;
+   margin-left: 100px;
 }
 
 /* TITLE */
@@ -1387,28 +1600,29 @@ textarea {
 }
 
 .color{
-  max-width: 150px;
+  max-width: 100%;
   margin-left: auto;
   padding: 0 40px;
 }
 
 /* BUTTON */
 .contact-btn {
-  font-family: "Inter", sans-serif;
-  position: relative;
-  background: #1f8f00;
-  color: #fff;
-  padding: 20px 30px;
-  font-size: 20px;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-  transition: all 0.3s ease;
-  margin-left: 469px;
+     color: #fff;
+    cursor: pointer;
+    background: #1f8f00;
+    border: none;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    width: 50%;
+    margin-left: 510px;
+    padding: 20px 30px;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    transition: all .3s;
+    display: flex;
+    position: relative;
+
 }
 
 .contact-btn:hover {
@@ -1660,7 +1874,7 @@ textarea {
   font-size: 14px;
   color: #777;
   margin-bottom: 20px;
-  margin-right: 1030px;
+  margin-right: 1650px;
 }
 
 /* main heading */
@@ -1718,7 +1932,7 @@ textarea {
 .test-card {
   position: relative;
   padding-left: 20px;
-  border-left: 1px solid #ddd;
+  /* border-left: 1px solid #ddd; */
 }
 
 /* quote */
@@ -1765,9 +1979,9 @@ textarea {
 
 .container {
   width: 100%;
-  max-width: 1200px;   /* 👈 controls alignment */
+  /* max-width: 1200px;   👈 controls alignment */
   /* margin: 0 auto; */
-  margin-left: 50px;
+  /* margin-left: 50px; */
 }
 
 .above-footer {
@@ -1825,6 +2039,7 @@ textarea {
   transform: translateY(-2px);
   box-shadow: 0 12px 30px rgba(0, 212, 255, 0.3);
   background-color: red;
+  
 }
 
 /* arrow */
@@ -1856,6 +2071,7 @@ textarea {
   justify-content: space-between;
   gap: 60px;
   margin-bottom: 50px;
+  margin-left: 50px;
 }
 
 /* LEFT → RIGHT */
@@ -1877,6 +2093,7 @@ textarea {
   opacity: 0;
   transform: translateX(80px);
   animation: slideRight 0.8s ease forwards;
+  margin-right: 50px;
 }
 
 @keyframes slideRight {
@@ -2485,7 +2702,7 @@ position: relative;
    Append this to the end of App.css
    ============================================================ */
 
-@media (max-width: 1800px) {
+@media (max-width: 1596px) {
 
   /* ══════════════════════════════════════════
      HERO
@@ -2557,7 +2774,7 @@ position: relative;
 
   .container{
     max-width: 1200px;
-    margin-left: 30px;
+    margin-left: 5px;
   }
 
   .build-header h1 {
@@ -2565,20 +2782,38 @@ position: relative;
     text-align: center;
     font-size: 42px;
   }
+.bs-panel-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 30px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 4;
+}
 
   .bs-stage {
-    margin-left: 320px;
-    gap: 40px;
+    margin-left: 20px;
+    gap: 80px;
     justify-content: center;
+    max-width: 100%;
+    width: 100%;
   }
 
-  .bs-center img {
-    max-width: 900px;
-    height: 500px;
-  }
+.bs-center {
+  width: 100%;
+  max-width: 1800px; /* increase this */
+  margin: 0 auto;
+}
 
   .bs-box {
     height: 500px;
+    width: 120px;
   }
 
   /* ══════════════════════════════════════════
@@ -2605,31 +2840,36 @@ position: relative;
   /* ══════════════════════════════════════════
      ABOUT SECTION
   ══════════════════════════════════════════ */
-  .about-image img {
-    width: 1800px;
-    max-width: 1400px;
-    height: 700px;
-  }
+  .about-wrapper {
+  position: relative;
+  overflow: visible;
+}
+.about-image {
+  position: relative;
+  width: 1400px;
+  height: 900px;
+  margin-left: 0px;
+  margin-top: 20px;
+  overflow: hidden; /* image stays inside frame */
+}
 
-  .about-card {
-    position: absolute;
-    top: 560px;
-    left: auto;
-    right: 30px;
-    width: 300px;
-    margin-right: -270px;
-    /* padding: 40px; */
-    padding-bottom: -140px;
-  }
-
-  .about-card h2 {
-    font-size: 24px;
-  }
-
-  .about-play-btn {
-  position:absolute;
-  top: 79%;
-    left: 98%;
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+  
+  
+}
+.about-image:hover img {
+  transform: scale(1.05); 
+}
+/* About play button — separate from hero play button */
+.about-play-btn {
+  position: absolute;
+  top: 83%;
+    left: 76%;
   transform: translate(-50%, -50%);
   width: 60px; height: 60px;
   border-radius: 50%;
@@ -2644,7 +2884,48 @@ position: relative;
   z-index: 3;
   transition: background 0.2s, color 0.2s;
 }
+.about-play-btn:hover { background: red; color: white; }
+.about-text {
+ color: #fff;
+    text-align: left;
+    width: 65%;
+    margin-top: 40px;
+    font-size: 14px;
+    line-height: 1.75;
+    margin-left: -1px
+    
+}
+.about-card {
+  position: absolute;
+  top: 769px;
+  left: 1090px;
+  width: 352px;
+  height: 250px;
+  padding: 60px;
+  margin-left: -0px;
+  background: #0b0b0b;
+  border: 1px solid rgba(255,255,255,0.1);
+  z-index: 2;
+  /* margin-right: 10px; */
+}
 
+.about-card h2 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.about-card button {
+  background: #1a8917;
+  color: #fff;
+  padding: 20px 15px;
+  font-size: 15px;
+  margin-top: 16px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+   border: 1px solid #f7f7f7;
+  
+}
 
   /* ══════════════════════════════════════════
      WORK SECTION
@@ -2771,11 +3052,12 @@ position: relative;
     height: 420px;
     margin-left: 45px;
     max-width: 1430px;
+    overflow: hidden;
   }
 
   .EXHIBITIONS {
-    margin-left: 42px;
-    margin-right: 42px;
+    margin-left: 52px;
+    margin-right: 52px;
   }
 
   /* TEXT */
@@ -2784,7 +3066,7 @@ position: relative;
   color: #050505;
   margin-bottom: 40px;
   text-align: left;
-  margin-left: 50px;
+  margin-left: 55px;
 }
 
   /* ══════════════════════════════════════════
@@ -2795,6 +3077,7 @@ position: relative;
     max-width: 1200px;
     margin: 30px auto 30px 80px;
     font-family: Inter, sans-serif;
+    margin-left: 80px;
 }
   
   
@@ -2814,7 +3097,7 @@ position: relative;
   position: relative;
   background: #1f8f00;
   color: #fff;
-  padding: 20px 30px;
+  padding: 20px 20px;
   font-size: 20px;
   border: none;
   cursor: pointer;
@@ -2826,6 +3109,11 @@ position: relative;
   transition: all 0.3s ease;
   margin-left:228px ;
 
+}
+
+.contact-btn:hover {
+  transform: translateX(05px);
+  background:red;
 }
 /* CHECKBOX */
 .checkbox {
@@ -2848,9 +3136,10 @@ position: relative;
 }
 
 .color{
-  max-width: 160px;
+  max-width: 230px;
   margin-left: auto;
   padding: 0 40px;
+  height: 80%;
 }
 
   /* ══════════════════════════════════════════
@@ -2874,10 +3163,12 @@ position: relative;
 
   .test-p {
     margin-right: 1200px;
+    margin-left: -80px;
   }
 
   .about {
     font-size: 52px;
+    margin-left: -80px;
   }
 
   /* ══════════════════════════════════════════

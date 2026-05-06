@@ -1,0 +1,487 @@
+/* =========================
+   PAGE
+========================= */
+
+.brand-page {
+  font-family: "Inter", sans-serif;
+  color: #111;
+  overflow-x: hidden;
+  /* margin: 50px; */
+}
+
+/* =========================
+   HERO
+========================= */
+
+.brand-hero {
+  width: 100%;
+  padding: 20px 30px 40px;
+  margin-top: 30px;
+}
+
+.brand-hero-banner {
+  position: relative;
+  width: 100%;
+  height: 620px;
+  overflow: hidden;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+}
+
+.brand-hero-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.brand-hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-hero-overlay h1 {
+  color: #fff;
+  font-size: 40px;
+  font-weight: 400;
+  margin-bottom: 10px;
+   font-family: "Inter", sans-serif;
+}
+
+.brand-hero-overlay p {
+  color: #ddd;
+  font-size: 15px;
+   font-family: "Inter", sans-serif;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.brand-container {
+  width: 100%;
+  padding: 60px 40px;
+
+}
+
+.brand-wrapper {
+  display: grid;
+  grid-template-columns: 1.8fr 0.9fr;
+  /* gap: 40px; */
+  align-items: flex-start;
+}
+
+/* =========================
+   LEFT CONTENT
+========================= */
+
+.brand-main {
+  width: 100%;
+}
+
+.brand-main-img {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.brand-main-img img {
+  width: 80%;
+  height: 600px;
+  border-radius: 20px;
+  display: block;
+}
+
+.brand-content-text h2 {
+  font-size: 35px;
+  margin-bottom: 20px;
+  font-weight: 700;
+   font-family: "Inter", sans-serif;
+}
+
+.brand-content-text p {
+  font-size: 20px;
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 40px;
+   font-family: "Inter", sans-serif;
+   width: 100%; max-width: 900px;
+}
+
+.brand-secondary-img {
+  margin-top: 40px;
+}
+
+.brand-secondary-img img {
+  width: 80%;
+  height: 600px;
+  border-radius: 20px;
+  display: block;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.brand-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  
+}
+
+/* =========================
+   SIDEBAR BOX
+========================= */
+
+.brand-sidebar-widget {
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  line-height: 58px;
+}
+
+.brand-sidebar-widget h3 {
+  font-size: 25px;
+  margin-bottom: 25px;
+  font-weight: 700;
+   font-family: "Inter", sans-serif;
+}
+
+/* =========================
+   SERVICES LIST
+========================= */
+
+.brand-services-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #f7f7f7;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.brand-services-list li {
+  margin-bottom: 15px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.brand-services-list button {
+  width: 100%;
+  height: 52px;
+
+  border: none;
+  border-radius: 10px;
+  background: #f3f3f3;
+  color: #111;
+  text-align: left;
+  padding: 0 18px;
+
+  font-size: 24px;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+   font-family: "Inter", sans-serif;
+}
+
+.brand-services-list li.active button {
+  background: #ff0000;
+  color: #fff;
+}
+
+.offer-box {
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  width: 100%;
+  max-width: 100%; max-width: 700px;
+}
+
+.offer-box h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #050505;
+  margin-bottom: 45px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Inter", sans-serif;
+  text-align: right;
+}
+
+.offer-box h4 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-family: "Inter", sans-serif;
+}
+
+.offer-box p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #050505;
+  margin-left: 45px;
+  margin-bottom: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.offer-box img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Tablet */
+@media (max-width: 100%) and (max-width: 992px) {
+  .offer-box h4 {
+    font-size: 20px;
+  }
+
+  .offer-box p {
+    font-size: 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 100%) and (max-width: 768px) {
+  .offer-box {
+    padding: 10px;
+  }
+
+  .offer-box h4 {
+    font-size: 18px;
+    gap: 10px;
+  }
+
+  .offer-box p {
+    font-size: 14px;
+    margin-left: 40px;
+  }
+
+  .offer-box img {
+    width: 24px;
+    height: 24px;
+  }
+}
+/* =========================
+   QUOTE FORM
+========================= */
+
+.brand-quote-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.brand-quote-form input,
+.brand-quote-form textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 14px;
+  outline: none;
+  background: #f7f7f7;
+   font-family: "Inter", sans-serif;
+}
+
+.brand-quote-form textarea {
+  height: 120px;
+  resize: none;
+  background: #fff;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.brand-submit-btn,
+.brand-contact-btn {
+  border: none;
+  background: #000;
+  color: #fff;
+   font-family: "Inter", sans-serif;
+
+  height: 50px;
+  width: 40%;
+  border-radius: 40px;
+margin-top: 30px;
+  font-size: 14px;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.brand-submit-btn:hover,
+.brand-contact-btn:hover {
+  background: #ff0000;
+}
+
+.brand-arrow {
+  margin-left: 8px;
+}
+
+/* =========================
+   HELP BOX
+========================= */
+
+.brand-help-box {
+  background: #000;
+  color: #fff;
+  text-align: center;
+   font-family: "Inter", sans-serif;
+   width: 100%;
+   height: 560px;
+}
+
+.brand-help-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 80px;
+}
+
+.brand-help-icon img {
+  width: 100%;
+}
+
+.brand-help-box h3 {
+  font-size: 24px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.brand-contact-info p {
+  color: #ddd;
+  margin-bottom: 10px;
+}
+
+.brand-contact-btn {
+  margin-top: 20px;
+  background: #ff0000;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 100%) and (max-width: 991px) {
+
+  .brand-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-container {
+    padding: 40px 20px;
+  }
+
+  .brand-hero {
+    padding: 20px;
+  }
+
+  .brand-hero-banner {
+    height: 250px;
+  }
+
+  .brand-hero-overlay h1 {
+    font-size: 34px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 600px) {
+  /* styles */
+  .brand-hero-banner {
+    height: 220px;
+  }
+
+  .brand-hero-overlay h1 {
+    font-size: 26px;
+  }
+
+  .brand-content-text h2 {
+    font-size: 24px;
+  }
+
+  .brand-sidebar-widget {
+    padding: 20px;
+  }
+}
+
+.brand-services-list ul {
+  list-style: none;
+  padding: 0;
+  margin:0px;
+   line-height: 80px;
+}
+
+.brand-services-list li {
+  margin-bottom: 12px;
+}
+
+.service-link {
+  display: block;
+  width: 100%;
+  padding: 0px 20px;
+  border-radius: 10px;
+  /* background: #f5f5f5; */
+  color: #111;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+  font-size: 20px;
+ 
+}
+
+.brand-services-list li.active .service-link {
+  background: #ff0000;
+  color: #fff;
+}
+
+.service-link:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* =========================
+   HOVER ZOOM ANIMATIONS
+========================= */
+.brand-main-img, .brand-secondary-img {
+  overflow: hidden;
+}
+
+.brand-hero-banner img,
+.brand-main-img img,
+.brand-secondary-img img {
+  transition: transform 0.55s ease;
+}
+
+.brand-hero-banner:hover img,
+.brand-main-img:hover img,
+.brand-secondary-img:hover img {
+  transform: scale(1.08);
+}
+
+/* Words Animation */
+.brand-hero-overlay h1,
+.brand-content-text h2,
+.offer-box h3 {
+  transition: transform 0.55s ease, letter-spacing 0.55s ease;
+}
+
+.brand-hero-overlay:hover h1,
+.brand-content-text:hover h2,
+.offer-box:hover h3 {
+  transform: scale(1.02);
+  letter-spacing: 2px;
+}
+

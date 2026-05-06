@@ -1,0 +1,579 @@
+/* =========================
+   PAGE
+========================= */
+
+.el-printing-page {
+  color: #111;
+  overflow-x: hidden;
+  /* margin: 50px; */
+}
+
+/* =========================
+   HERO
+========================= */
+
+.el-printing-hero {
+  width: 100%;
+  padding: 20px 30px 40px;
+  margin-top: 30px;
+}
+
+.el-printing-hero-banner {
+  position: relative;
+  width: 100%;
+  height: 620px;
+  overflow: hidden;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+}
+
+.el-printing-hero-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.el-printing-hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.el-printing-hero-overlay h1 {
+  color: #fff;
+  font-size: 40px;
+  font-weight: 400;
+  margin-bottom: 10px;
+   font-family: "Inter", sans-serif;
+}
+
+.el-printing-hero-overlay p {
+  color: #ddd;
+  font-size: 15px;
+   font-family: "Inter", sans-serif;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.el-printing-container {
+  width: 100%;
+  padding: 60px 40px;
+}
+
+.el-printing-wrapper {
+  display: grid;
+  grid-template-columns: 1.8fr 0.9fr;
+  /* gap: 40px; */
+  align-items: flex-start;
+}
+
+/* =========================
+   LEFT CONTENT
+========================= */
+
+.el-printing-main {
+  width: 100%;
+}
+
+.el-printing-main-img {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.el-printing-main-img img {
+  width: 80%;
+  height: 600px;
+  border-radius: 20px;
+  display: block;
+}
+
+.el-printing-content-text h2 {
+  font-size: 35px;
+  margin-bottom: 20px;
+  font-weight: 700;
+   font-family: "Inter", sans-serif;
+}
+
+.el-printing-content-text p {
+  font-size: 20px;
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 40px;
+   font-family: "Inter", sans-serif;
+   width: 100%; max-width: 900px;
+}
+
+.el-printing-secondary-img {
+  margin-top: 40px;
+}
+
+.el-printing-secondary-img img {
+  width: 70%;
+  height: 600px;
+  border-radius: 20px;
+  display: block;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.el-printing-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  
+}
+
+/* =========================
+   SIDEBAR BOX
+========================= */
+
+.el-printing-sidebar-widget {
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  line-height: 58px;
+}
+
+.el-printing-sidebar-widget h3 {
+  font-size: 25px;
+  margin-bottom: 25px;
+  font-weight: 700;
+   font-family: "Inter", sans-serif;
+}
+
+/* =========================
+   SERVICES LIST
+========================= */
+
+.el-printing-services-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #f7f7f7;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.el-printing-services-list li {
+  margin-bottom: 15px;
+  background: #ffff;
+}
+
+.el-printing-services-list button {
+  width: 100%;
+  height: 52px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #f3f3f3;
+  color: #111;
+
+  text-align: left;
+  padding: 0 18px;
+
+  font-size: 24px;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+   font-family: "Inter", sans-serif;
+}
+
+.el-printing-services-list li.active button {
+  background: #ff0000;
+  color: #fff;
+}
+
+.offer-box {
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  width: 100%;
+  max-width: 100%; max-width: 700px;
+}
+
+.offer-box h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #050505;
+  margin-bottom: 45px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Inter", sans-serif;
+  text-align: right;
+}
+
+.offer-box h4 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-family: "Inter", sans-serif;
+}
+
+.offer-box p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #050505;
+  margin-left: 45px;
+  margin-bottom: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.offer-box img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Tablet */
+@media (max-width: 100%) and (max-width: 992px) {
+  .offer-box h4 {
+    font-size: 20px;
+  }
+
+  .offer-box p {
+    font-size: 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 100%) and (max-width: 768px) {
+  .offer-box {
+    padding: 10px;
+  }
+
+  .offer-box h4 {
+    font-size: 18px;
+    gap: 10px;
+  }
+
+  .offer-box p {
+    font-size: 14px;
+    margin-left: 40px;
+  }
+
+  .offer-box img {
+    width: 24px;
+    height: 24px;
+  }
+}
+/* =========================
+   QUOTE FORM
+========================= */
+
+.el-printing-quote-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+}
+
+.el-printing-quote-form input,
+.el-printing-quote-form textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+   font-family: "Inter", sans-serif;
+}
+
+.el-printing-quote-form textarea {
+  height: 120px;
+  resize: none;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.el-printing-submit-btn {
+  border: none;
+  background: #000;
+  color: #fff;
+   font-family: "Inter", sans-serif;
+  margin-top: 50px;
+  height: 50px;
+  width: 50%;
+  border-radius: 40px;
+
+  font-size: 14px;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.el-printing-contact-btn {
+  border: none;
+  background: #000;
+  color: #fff;
+   font-family: "Inter", sans-serif;
+  margin-top: 50px;
+  height: 50px;
+  width: 100%;
+  border-radius: 40px;
+
+  font-size: 14px;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.el-printing-submit-btn:hover,
+.el-printing-contact-btn:hover {
+  background: #ff0000;
+}
+
+.el-printing-arrow {
+  margin-left: 8px;
+}
+
+/* =========================
+   HELP BOX
+========================= */
+
+.el-printing-help-box {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+
+ margin-top: 120px;
+  background: #000;
+  color: #fff;
+  text-align: center;
+   font-family: "Inter", sans-serif;
+   height: 550px;
+   width: 100%; max-width: 500px;
+  border-radius: 24px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 50px 35px;
+  margin: 0 auto;
+}
+
+.el-printing-help-icon {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 40px;
+}
+
+.el-printing-help-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.el-printing-help-box h3 {
+  font-size: 30px;
+  line-height: 1.5;
+  font-weight: 700;
+  margin-bottom: 30px;
+  max-width: 280px;
+}
+
+.el-printing-contact-info {
+  margin-bottom: 30px;
+}
+
+.el-printing-contact-info p {
+  color: #ddd;
+  margin-bottom: 12px;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.el-printing-contact-btn {
+  margin-top: 10px;
+  background: #ff0000;
+  color: #fff;
+  
+  border: none;
+  outline: none;
+
+  padding: 16px 32px;
+  border-radius: 50px;
+
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.el-printing-contact-btn:hover {
+  transform: translateY(-3px);
+}
+
+/* Tablet */
+@media (max-width: 100%) and (max-width: 992px) {
+  .el-printing-help-box {
+    max-width: 100%;
+    min-height: auto;
+    padding: 45px 25px;
+  }
+
+  .el-printing-help-box h3 {
+    font-size: 26px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 100%) and (max-width: 768px) {
+  .el-printing-help-box {
+    padding: 40px 20px;
+    border-radius: 18px;
+  }
+
+  .el-printing-help-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .el-printing-help-box h3 {
+    font-size: 22px;
+  }
+
+  .el-printing-contact-info p {
+    font-size: 15px;
+  }
+
+  .el-printing-contact-btn {
+    width: 100%;
+    font-size: 15px;
+    padding: 14px 20px;
+  }
+}
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 100%) and ( max-width: 991px) {
+
+  .el-printing-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .el-printing-container {
+    padding: 40px 20px;
+  }
+
+  .el-printing-hero {
+    padding: 20px;
+  }
+
+  .el-printing-hero-banner {
+    height: 250px;
+  }
+
+  .el-printing-hero-overlay h1 {
+    font-size: 34px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 100%) and ( max-width: 600px) {
+
+  .el-printing-hero-banner {
+    height: 220px;
+  }
+
+  .el-printing-hero-overlay h1 {
+    font-size: 26px;
+  }
+
+  .el-printing-content-text h2 {
+    font-size: 24px;
+  }
+
+  .el-printing-sidebar-widget {
+    padding: 20px;
+  }
+}
+
+.el-printing-services-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.el-printing-services-list li {
+  margin-bottom: 12px;
+}
+
+.service-link {
+  display: block;
+  width: 100%;
+  padding: 1px 20px;
+  border-radius: 10px;
+  /* background: #f5f5f5; */
+  color: #111;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+  font-size: 20px;
+  line-height: 80px;
+}
+
+.el-printing-services-list li.active .service-link {
+  background: #ff0000;
+  color: #fff;
+}
+
+.service-link:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* =========================
+   HOVER ZOOM ANIMATIONS
+========================= */
+.el-printing-main-img, .el-printing-secondary-img {
+  overflow: hidden;
+}
+
+.el-printing-hero-banner img,
+.el-printing-main-img img,
+.el-printing-secondary-img img {
+  transition: transform 0.55s ease;
+}
+
+.el-printing-hero-banner:hover img,
+.el-printing-main-img:hover img,
+.el-printing-secondary-img:hover img {
+  transform: scale(1.07);
+}
+
+/* Words Animation */
+.el-printing-hero-overlay h1,
+.el-printing-content-text h2,
+.offer-box h3 {
+  transition: transform 0.55s ease, letter-spacing 0.55s ease;
+}
+
+.el-printing-hero-overlay:hover h1,
+.el-printing-content-text:hover h2,
+.offer-box:hover h3 {
+  transform: scale(1.02);
+  letter-spacing: 2px;
+}
+

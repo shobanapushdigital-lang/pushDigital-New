@@ -1,0 +1,340 @@
+/* ============================================================
+   PUSH DIGITAL — Services.css  (Services Listing Grid Page)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Outfit:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════
+   PAGE WRAPPER
+══════════════════════════════════════════ */
+.services-page {
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+   font-family: "Inter", sans-serif;
+   /* margin: 30px; */
+}
+
+/* ══════════════════════════════════════════
+   HERO BANNER
+══════════════════════════════════════════ */
+.svc-hero {
+  position: relative;
+  width: 100%;
+  height: 620px;
+  overflow: hidden;
+}
+ .svc-hero {
+  margin-left: 20px;
+ }
+
+.svc-hero-banner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  /* margin-top: 20px; */
+}
+
+.svc-hero-banner img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 60px;
+}
+
+.svc-hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* background: rgba(0, 0, 0, 0.52); */
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  gap: 10px;
+  
+}
+
+.svc-hero-overlay h1 {
+  color: #fff;
+   font-family: "Inter", sans-serif;
+  font-size:40px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  text-align: center;
+  margin: 0;
+}
+
+.svc-hero-overlay p {
+  color: #ddd;
+   font-family: "Inter", sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════
+   GRID SECTION WRAPPER
+══════════════════════════════════════════ */
+.svc-grid-section {
+  padding: 70px 0 80px;
+}
+
+.svc-grid-container {
+  max-width: 100%; max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  border-radius: 20px;
+}
+
+/* ══════════════════════════════════════════
+   3-COLUMN CARD GRID
+══════════════════════════════════════════ */
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 42px 64px;
+}
+
+/* ══════════════════════════════════════════
+   SERVICE CARD
+══════════════════════════════════════════ */
+.svc-card {
+
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .svc-card:hover {
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+} */
+
+/* ── Card Number ── */
+.svc-card-num {
+   font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #050505;
+  letter-spacing: 2px;
+  padding: 30px 20px 4px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* ── Card Header (title + description) ── */
+.svc-card-header {
+  padding: 2px 20px 18px;
+  flex: 1;
+   font-family: "Inter", sans-serif;
+}
+
+.svc-card-header h2 {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(17px, 1.7vw, 21px);
+  font-weight: 600;
+  color: #0a0a0a;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin:0 0 10px;
+  position: relative;
+  padding-bottom: 12px;
+  text-align: left;
+  font-size:19px;
+}
+
+/* .svc-card-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 34px;
+  height: 3px;
+  background: #279702;
+  transition: width 0.3s ease;
+}
+
+.svc-card:hover .svc-card-header h2::after {
+  width: 58px;
+} */
+
+.svc-card-header p {
+  font-size: 16px;
+  line-height: 1.72;
+  color: #666;
+  /* margin: 10px; */
+   font-family: "Inter", sans-serif;
+   text-align: left;
+}
+
+/* ── Card Image ── */
+.svc-card-img {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 310px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 20px;
+}
+
+.svc-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.55s ease;
+}
+
+.svc-card:hover .svc-card-img img {
+  transform: scale(1.07);
+}
+
+/* ── Image Hover Overlay ── */
+.svc-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.32s ease;
+}
+
+.svc-card:hover .svc-card-overlay {
+  opacity: 1;
+}
+
+
+
+/* ══════════════════════════════════════════
+   PAGINATION
+══════════════════════════════════════════ */
+.svc-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 54px;
+}
+
+.svc-page-btn {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 13px;
+  background: #fff;
+  color: #555;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.svc-page-btn:hover:not(:disabled) {
+  background: #f2f2f2;
+  border-color: #279702;
+  color: #279702;
+}
+
+.svc-page-btn.active {
+  background: #279702;
+  color: #fff;
+  border-color: #279702;
+  font-weight: 700;
+}
+
+.svc-page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.svc-page-arrow {
+  font-size: 15px;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 100%) and (max-width: 1024px) {
+  .svc-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px 20px;
+  }
+}
+
+@media (max-width: 100%) and (max-width: 768px) {
+  .svc-hero {
+    height: 320px;
+  }
+  .svc-grid-section {
+    padding: 50px 0 60px;
+  }
+  .svc-grid-container {
+    padding: 0 20px;
+  }
+  .svc-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 16px;
+  }
+  .svc-card-img {
+    height: 175px;
+  }
+}
+
+@media (max-width: 100%) and (max-width: 560px) {
+  .svc-hero {
+    height: 260px;
+  }
+  .svc-hero-overlay h1 {
+    font-size: 34px;
+  }
+  .svc-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .svc-grid-container {
+    padding: 0 16px;
+  }
+  .svc-grid-section {
+    padding: 36px 0 48px;
+  }
+  .svc-card-img {
+    height: 195px;
+  }
+}
+
+@media (max-width: 1596px) {
+
+.svc-hero {
+  border-radius: 7px 9px 3px 33px;
+  width: 100%;
+  max-width: 100vw;
+  height: 620px;
+  position: relative;
+  overflow: hidden;
+  padding: 0 50px;  /* increase right space */
+  margin-left: 0px;
+  margin-top: 30px;
+}
+  
+
+  .svc-hero-banner img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+   
+  }
+
+}

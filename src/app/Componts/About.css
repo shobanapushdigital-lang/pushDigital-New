@@ -1,0 +1,255 @@
+/* ============================================================
+   PUSH DIGITAL — About.css
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Outfit:wght@300;400;500;600&display=swap');
+
+.about-page {
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════
+   HERO BANNER
+   ══════════════════════════════════════════ */
+.about-hero {
+  position: relative;
+  width: 100%;
+  height: 650px;
+  overflow: hidden;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.hero-banner {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-banner img {
+ width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  margin-left: 50px;
+  margin-bottom: 50PX;
+  margin-top: 50px;
+}
+.svc-hero {
+  margin-left: 32px;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* background: rgba(0, 0, 0, 0.4); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay h1 {
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 70px;
+  font-weight: 400;
+}
+
+.hero-overlay P {
+  color: #ddd;
+  font-family: "Inter", sans-serif;
+  font-size: 19px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+/* ══════════════════════════════════════════
+   ABOUT SECTION
+   ══════════════════════════════════════════ */
+.about-section {
+  padding: 100px 0;
+  background: #000;
+  color: #fff;
+}
+
+.about-wrapper {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+}
+
+.about-image {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.about-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: #000;
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.about-text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #ccc;
+  font-family: "Inter", sans-serif;
+}
+
+.about-card {
+  position: absolute;
+  bottom: -40px;
+  right: 0;
+  background: #0b0b0b;
+  padding: 40px;
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: left;
+}
+
+.about-card h2 {
+  font-family: "Inter", sans-serif;
+  font-size: 40px;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.about-card button {
+  background: #279702;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+}
+
+/* ══════════════════════════════════════════
+   TESTIMONIALS
+   ══════════════════════════════════════════ */
+.testimonials {
+  padding: 100px 0;
+  background: #fdfdfd;
+}
+
+.test-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.test-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+  position: relative;
+}
+
+.test-card .quote {
+  font-size: 60px;
+  color: #279702;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  opacity: 0.2;
+}
+
+.test-card p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+  font-family: "Inter", sans-serif;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user h4 {
+  font-size: 16px;
+  color: #000;
+  font-family: "Inter", sans-serif;
+}
+
+.user p {
+  font-size: 13px;
+  color: #888;
+  font-family: "Inter", sans-serif;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════
+   WORK INFO
+   ══════════════════════════════════════════ */
+.stat{
+  font-family: "Inter", sans-serif;
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 600;
+  color: #111;
+  line-height: 1;
+  font-size: 40px;
+}
+
+.stat p {
+  font-size: 14px;
+  color: #666;
+  font-family: "Inter", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 100%) and (max-width: 1024px) {
+  .test-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .about-card {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
